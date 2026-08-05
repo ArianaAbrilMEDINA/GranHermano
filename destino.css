@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111111;
+    color: #f0f0f0;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- SECCIÓN PORTADA (HERO) --- */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #bc1010 0%, #600000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Contenedor e imagen del Gran Hermano */
+.poster-container {
+    max-height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gran-hermano-img {
+    max-height: 52vh;
+    width: auto;
+    max-width: 85vw;
+    border: 4px solid #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    object-fit: contain;
+}
+
+/* Frase Principal en Fuente Sekuya */
+.frase-fraternidad {
+    font-family: 'Sekuya', serif;
+    font-size: clamp(24px, 4.5vw, 60px);
+    color: #f5d100;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+    -webkit-text-stroke: 1.5px #000;
+    letter-spacing: 3px;
+    margin-top: 10px;
+    max-width: 90vw;
+}
+
+/* Indicador para deslizar hacia abajo */
+.scroll-indicador {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    animation: flotar 2s infinite ease-in-out;
+}
+
+.flecha {
+    font-size: 20px;
+    margin-top: 4px;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+}
+
+/* --- SECCIÓN CONTENIDO (RESUMEN) --- */
+.contenido {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px 80px 20px;
+}
+
+.tarjeta-resumen {
+    background: #1c1c1c;
+    border-left: 5px solid #bc1010;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    margin-bottom: 40px;
+}
+
+.tarjeta-resumen h2 {
+    font-family: 'Sekuya', serif;
+    font-size: 28px;
+    color: #e51000;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.tarjeta-resumen p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #d0d0d0;
+    margin-bottom: 15px;
+}
+
+/* Bloques de Slogans del Partido */
+.slogans {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.slogan-box {
+    background: #262626;
+    border: 1px solid #444;
+    padding: 18px;
+    text-align: center;
+    font-family: 'Sekuya', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: #ffffff;
+    letter-spacing: 2px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.slogan-box:hover {
+    background: #800000;
+    transform: scale(1.02);
+}
+
+/* Botón Volver */
+.boton-contenedor {
+    text-align: center;
+}
+
+.btn-volver {
+    display: inline-block;
+    padding: 15px 35px;
+    background: #bc1010;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Sekuya', serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-volver:hover {
+    background: #e51000;
+    transform: scale(1.05);
+}
+
+/* Ajustes Responsivos para Tablets / PC */
+@media (min-width: 768px) {
+    .slogans {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .slogan-box {
+        flex: 1;
+    }
+}
