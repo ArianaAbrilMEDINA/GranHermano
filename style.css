@@ -21,67 +21,55 @@ body {
     background: #df1f11;
 }
 
-/* TÍTULO BIEN EN EL MEDIO DE LA PANTALLA */
+/* TÍTULO EN EL CENTRO */
 .titulo {
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
 
     font-family: 'Sekuya', serif;
-    font-size: clamp(60px, 12vw, 150px);
+    font-size: clamp(42px, 10vw, 130px);
     color: #bfa301;
     text-transform: uppercase;
-    letter-spacing: 6px;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.6);
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
     pointer-events: none; /* Permite hacer clic al ojo que está detrás */
     white-space: nowrap;
 
-    -webkit-text-stroke: 3px #000000;
+    -webkit-text-stroke: 2px #000000;
 }
 
-/* OJO CLIQUEABLE Y GIGANTE */
+/* OJO EN CELULARES (Ajustado para que no ocupe toda la pantalla) */
 .ojo {
     position: absolute;
-    top: 2vh;
+    top: 3vh;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 120vw; 
-    height: auto; 
-    max-width: 160vw; 
+    /* En celulares mide el 85% del ancho para no Gigantizarse */
+    width: 85vw; 
+    max-height: 28vh; 
+    object-fit: contain;
 
     z-index: 3;
-    cursor: pointer; /* Muestra la manito para indicar que es un botón */
+    cursor: pointer;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Efecto opcional: resalta el ojo al pasar el mouse por encima */
 .ojo:hover {
     transform: translateX(-50%) scale(1.03);
     filter: drop-shadow(0 0 15px rgba(255, 220, 80, 0.6));
 }
 
-/* Personas en la base */
-.personas {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30vh; 
-    object-fit: cover; 
-    object-position: bottom center; 
-    z-index: 2;
-}
-
-/* Haz de luz naciendo desde la pupila */
+/* HAZ DE LUZ EN CELULARES */
 .luz {
     position: absolute;
     left: 50%;
-    top: calc(2vh + 16vw);
+    top: 10vh; /* Nace desde la pupila del ojo en celular */
 
-    width: 90vw;
+    width: 80vw;
     height: 120vh;
 
     transform-origin: top center;
@@ -99,31 +87,50 @@ body {
     z-index: 1; 
 }
 
+/* PERSONAS EN LA PARTE INFERIOR (Aseguramos visibilidad con z-index alto) */
+.personas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    height: 25vh; /* Ocupa el 25% de la parte inferior */
+    object-fit: cover; 
+    object-position: bottom center; 
+
+    z-index: 4; /* Pasa por delante de la luz para que se vean bien las siluetas */
+}
+
 @keyframes vigilar {
     0% {
-        transform: translateX(-50%) rotate(-20deg);
+        transform: translateX(-50%) rotate(-18deg);
     }
     50% {
-        transform: translateX(-50%) rotate(20deg);
+        transform: translateX(-50%) rotate(18deg);
     }
     100% {
-        transform: translateX(-50%) rotate(-20deg);
+        transform: translateX(-50%) rotate(-18deg);
     }
 }
 
-/* Ajustes para computadoras */
+/* --- AJUSTES EXCLUSIVOS PARA COMPUTADORAS Y TABLETS (Pantallas grandes) --- */
 @media (min-width: 768px) {
     .ojo {
         top: 20px;
-        width: 750px;
+        width: 650px;
+        max-height: none;
     }
 
     .luz {
-        top: 180px;
-        width: 550px;
+        top: 150px;
+        width: 500px;
     }
 
     .personas {
-        height: 35vh;
+        height: 32vh;
+    }
+
+    .titulo {
+        -webkit-text-stroke: 3px #000000;
     }
 }
