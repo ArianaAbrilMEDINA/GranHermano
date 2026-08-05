@@ -4,15 +4,16 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #E51000;
+/* Usamos dvh para adaptarnos a las barras del navegador del celu */
+html, body {
     height: 100vh;
+    height: 100dvh; 
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* Prohíbe totalmente el scroll */
+    background: #E51000;
     font-family: 'Sekuya', serif;
 }
 
-/* El contenedor principal */
 .pantalla {
     position: relative;
     width: 100%;
@@ -21,36 +22,15 @@ body {
     background: #df1f11;
 }
 
-/* TÍTULO EN EL CENTRO */
-.titulo {
-    position: absolute;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-
-    font-family: 'Sekuya', serif;
-    font-size: clamp(42px, 10vw, 130px);
-    color: #bfa301;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-    pointer-events: none; /* Permite hacer clic al ojo que está detrás */
-    white-space: nowrap;
-
-    -webkit-text-stroke: 2px #000000;
-}
-
-/* OJO EN CELULARES (Ajustado para que no ocupe toda la pantalla) */
+/* 1. EL OJO: Ocupa el 22% superior de la pantalla */
 .ojo {
     position: absolute;
-    top: 3vh;
+    top: 2vh;
     left: 50%;
     transform: translateX(-50%);
 
-    /* En celulares mide el 85% del ancho para no Gigantizarse */
-    width: 85vw; 
-    max-height: 28vh; 
+    width: 80vw;
+    height: 22vh; /* Limite de alto fijo para que no empuje todo hacia abajo */
     object-fit: contain;
 
     z-index: 3;
@@ -63,14 +43,46 @@ body {
     filter: drop-shadow(0 0 15px rgba(255, 220, 80, 0.6));
 }
 
-/* HAZ DE LUZ EN CELULARES */
+/* 2. EL TÍTULO: Ubicado justo en el centro vertical */
+.titulo {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+
+    font-family: 'Sekuya', serif;
+    font-size: clamp(38px, 9vw, 120px);
+    color: #bfa301;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+    white-space: nowrap;
+
+    -webkit-text-stroke: 2px #000000;
+}
+
+/* 3. LAS PERSONAS: Pegadas abajo de todo ocupando el 20% inferior */
+.personas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh; /* Entra seguro en la pantalla */
+    object-fit: cover;
+    object-position: bottom center;
+    z-index: 4;
+}
+
+/* 4. LA LUZ: Nace de la pupila y baja por detrás de las personas */
 .luz {
     position: absolute;
     left: 50%;
-    top: 10vh; /* Nace desde la pupila del ojo en celular */
+    top: 8vh;
 
-    width: 80vw;
-    height: 120vh;
+    width: 75vw;
+    height: 100vh;
 
     transform-origin: top center;
 
@@ -87,20 +99,6 @@ body {
     z-index: 1; 
 }
 
-/* PERSONAS EN LA PARTE INFERIOR (Aseguramos visibilidad con z-index alto) */
-.personas {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    
-    height: 25vh; /* Ocupa el 25% de la parte inferior */
-    object-fit: cover; 
-    object-position: bottom center; 
-
-    z-index: 4; /* Pasa por delante de la luz para que se vean bien las siluetas */
-}
-
 @keyframes vigilar {
     0% {
         transform: translateX(-50%) rotate(-18deg);
@@ -113,24 +111,25 @@ body {
     }
 }
 
-/* --- AJUSTES EXCLUSIVOS PARA COMPUTADORAS Y TABLETS (Pantallas grandes) --- */
+/* --- AJUSTES EN PANTALLAS GRANDES DE COMPUTADORA --- */
 @media (min-width: 768px) {
     .ojo {
         top: 20px;
-        width: 650px;
-        max-height: none;
+        width: 600px;
+        height: 30vh;
     }
 
     .luz {
-        top: 150px;
-        width: 500px;
+        top: 130px;
+        width: 480px;
     }
 
     .personas {
-        height: 32vh;
+        height: 28vh;
     }
 
     .titulo {
+        top: 48%;
         -webkit-text-stroke: 3px #000000;
     }
 }
