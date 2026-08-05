@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #E51000;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Sekuya', serif;
+}
+
+/* El contenedor principal */
+.pantalla {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #df1f11;
+}
+
+/* TÍTULO BIEN EN EL MEDIO DE LA PANTALLA */
+.titulo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+
+    font-family: 'Sekuya', serif;
+    font-size: clamp(60px, 12vw, 150px);
+    color: #bfa301;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.6);
+    pointer-events: none; /* Permite hacer clic al ojo que está detrás */
+    white-space: nowrap;
+
+    -webkit-text-stroke: 3px #000000;
+}
+
+/* OJO CLIQUEABLE Y GIGANTE */
+.ojo {
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 120vw; 
+    height: auto; 
+    max-width: 160vw; 
+
+    z-index: 3;
+    cursor: pointer; /* Muestra la manito para indicar que es un botón */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efecto opcional: resalta el ojo al pasar el mouse por encima */
+.ojo:hover {
+    transform: translateX(-50%) scale(1.03);
+    filter: drop-shadow(0 0 15px rgba(255, 220, 80, 0.6));
+}
+
+/* Personas en la base */
+.personas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh; 
+    object-fit: cover; 
+    object-position: bottom center; 
+    z-index: 2;
+}
+
+/* Haz de luz naciendo desde la pupila */
+.luz {
+    position: absolute;
+    left: 50%;
+    top: calc(2vh + 16vw);
+
+    width: 90vw;
+    height: 120vh;
+
+    transform-origin: top center;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 220, 80, 0.65),
+        rgba(255, 220, 80, 0.15),
+        transparent
+    );
+
+    clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+    animation: vigilar 6s ease-in-out infinite;
+    filter: blur(2px);
+    z-index: 1; 
+}
+
+@keyframes vigilar {
+    0% {
+        transform: translateX(-50%) rotate(-20deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(20deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(-20deg);
+    }
+}
+
+/* Ajustes para computadoras */
+@media (min-width: 768px) {
+    .ojo {
+        top: 20px;
+        width: 750px;
+    }
+
+    .luz {
+        top: 180px;
+        width: 550px;
+    }
+
+    .personas {
+        height: 35vh;
+    }
+}
